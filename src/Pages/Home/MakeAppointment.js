@@ -13,9 +13,9 @@ const MakeAppointment = () => {
             </div>
             <div className="flex-1">
                 <h3 className='text-xl text-primary'>Appointment</h3>
-                <h2 className='text-primary text-2xl'>make appointment today</h2>
-                <p className='text-white'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facere eligendi quos, sequi blanditiis doloribus maxime, repellendus quis saepe ad atque, natus deserunt veniam? Neque.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit dicta eveniet perspiciatis quibusdam iure eum ab temporibus sit, provident ipsum!</p>
-                <PrimaryButton className='pt-5'>Get Started</PrimaryButton>
+                <h2 className='text-primary text-2xl py-5'>make appointment today</h2>
+                <p className='text-white pb-3'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facere eligendi quos, sequi blanditiis doloribus maxime, repellendus quis saepe ad atque, natus deserunt veniam? Neque.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit dicta eveniet perspiciatis quibusdam iure eum ab temporibus sit, provident ipsum!</p>
+                <PrimaryButton>Get Started</PrimaryButton>
 
             </div>
         </section>
