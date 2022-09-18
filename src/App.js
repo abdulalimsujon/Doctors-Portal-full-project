@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import Login from './Pages/Shared/Login/Login';
 import Appoinment from './Pages/Appointment/Appoinment';
+import SignUp from './Pages/Shared/Login/SignUp';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="appointment" element={<Appoinment></Appoinment>} />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp></SignUp>} />
       </Routes>
 
 

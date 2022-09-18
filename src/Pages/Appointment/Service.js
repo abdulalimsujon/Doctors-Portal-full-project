@@ -4,9 +4,9 @@ import React from 'react';
 const Service = ({ service, setTreatment }) => {
     const { name, slots } = service;
     return (
-        <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-            <div class="card-body">
-                <h2 class="card-title">{name}</h2>
+        <div className="card lg:max-w-lg bg-base-100 shadow-xl">
+            <div className="card-body text-center">
+                <h2 className="text-2xl text-primary">{name}</h2>
                 <p>
                     {
                         slots.length > 0
@@ -17,7 +17,7 @@ const Service = ({ service, setTreatment }) => {
                     }
                 </p>
                 <p>{slots.length}   {slots.length > 1 ? 'spaces' : 'space'} available</p>
-                <div class="card-actions justify-center">
+                <div className="card-actions justify-center">
 
 
 
@@ -27,7 +27,7 @@ const Service = ({ service, setTreatment }) => {
 
 
                         onClick={() => setTreatment(service)}
-                        class="btn btn-primary uppercase text-white">Book Appointment</label>
+                        className="btn btn-primary uppercase text-white">Book Appointment</label>
                 </div>
             </div>
         </div>
