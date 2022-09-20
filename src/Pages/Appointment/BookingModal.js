@@ -5,7 +5,7 @@ import auth from '../../firebase.init';
 
 import { toast } from 'react-toastify';
 
-const BookingModal = ({ date, Treatment, setTreatment }) => {
+const BookingModal = ({ date, Treatment, setTreatment, refetch }) => {
     const { _id, name, slots } = Treatment;
     const [user] = useAuthState(auth);
 
@@ -44,6 +44,7 @@ const BookingModal = ({ date, Treatment, setTreatment }) => {
                 }
 
                 //close the modal
+                refetch();
                 setTreatment(null);
 
             })
