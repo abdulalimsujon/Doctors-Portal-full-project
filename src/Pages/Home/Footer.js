@@ -4,6 +4,7 @@ import bg from '../../assets/images/footer.png';
 
 const Footer = () => {
     return (
+
         <footer style={{
             background: `url(${bg})`,
             backgroundSize: `cover`
@@ -39,6 +40,10 @@ const Footer = () => {
             </footer>
 
         </footer>
+
+
+
+
     );
 };
 

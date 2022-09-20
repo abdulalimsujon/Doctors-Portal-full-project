@@ -9,6 +9,9 @@ import Appoinment from './Pages/Appointment/Appoinment';
 import SignUp from './Pages/Shared/Login/SignUp';
 import RequireAuth from './Pages/Shared/Login/RequireAuth';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -30,6 +33,9 @@ function App() {
       </Routes>
 
 
+
+
+      <ToastContainer />
     </div>
   );
 }

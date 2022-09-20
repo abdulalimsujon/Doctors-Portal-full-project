@@ -1,13 +1,56 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+
+import { toast } from 'react-toastify';
 
 const BookingModal = ({ date, Treatment, setTreatment }) => {
     const { _id, name, slots } = Treatment;
+    const [user] = useAuthState(auth);
 
     const hundleBooking = event => {
         event.preventDefault();
         const slot = event.target.slot.value;
-        setTreatment(null);
+        const formatedDate = format(date, 'PP');
+        const booking = {
+            treatmentId: _id,
+            treatment: name,
+            date: formatedDate,
+            slot,
+            patient: user.email,
+            patientName: user.displayName,
+            phone: event.target.phone.value
+
+        }
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+
+            body: JSON.stringify(booking)
+        }
+        )
+            .then(res => res.json())
+            .then(data => {
+
+
+                console.log(data);
+                if (data.success) {
+                    toast(`Appointment is set ${formatedDate} at ${slot}`)
+                } else {
+                    toast(`Already Booking On ${booking.date} at ${slot}`)
+                }
+
+                //close the modal
+                setTreatment(null);
+
+            })
+
+
+
+
 
     }
     return (
@@ -25,8 +68,8 @@ const BookingModal = ({ date, Treatment, setTreatment }) => {
                             }
 
                         </select>
-                        <input type="text" name='name' placeholder="Your name" className="input input-bordered w-full max-w-xs" />
-                        <input type="text" name='email' placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" name='name' value={user?.displayName} disable className="input input-bordered w-full max-w-xs" />
+                        <input type="text" name='email' disable value={user?.email} className="input input-bordered w-full max-w-xs" />
                         <input type="text" name='phone' placeholder="Your phone number" className="input input-bordered w-full max-w-xs" />
                         <input type='submit' value='Submit' className="btn btn-secondary input-bordered w-full max-w-xs" />
 
