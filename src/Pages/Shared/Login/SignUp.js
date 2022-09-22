@@ -4,10 +4,12 @@ import auth from '../../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../../Hooks/UseToken';
 
 const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
+
 
     const navigate = useNavigate();
 
@@ -19,12 +21,12 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
 
+    const [token] = useToken(user || gUser);
+
+
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    if (gUser) {
-        console.log(user);
-    }
 
     let signUperror;
 
@@ -36,12 +38,16 @@ const SignUp = () => {
     if (error || gError || UpdateError) {
         signUperror = <p className='text-red-500'>{error?.message || gError?.message}</p>
     }
+
+    if (token) {
+        navigate('/appointment');
+    }
     const onSubmit = async data => {
 
-        console.log(data)
+        // console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log('Updated profile');
+        //console.log('Updated profile');
         navigate('/appointment');
     };
 
@@ -121,7 +127,7 @@ const SignUp = () => {
                             <input
 
                                 type="password"
-                                placeholder="your email" class="input input-bordered w-full max-w-xs"
+                                placeholder="your password" class="input input-bordered w-full max-w-xs"
                                 {...register("password",
 
                                     {
